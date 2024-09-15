@@ -37,7 +37,7 @@ This project demonstrates how to set up a Jenkins pipeline to:
 ## Usage
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/jenkins-pipeline-to-s3.git
+   git clone https://github.com/phsinghka/jenkins-pipeline-to-s3.git
    ```
 
 2. Add your AWS and GitHub credentials in Jenkins.
