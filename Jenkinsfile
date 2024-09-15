@@ -18,7 +18,7 @@ pipeline {
                 script {
                     git branch: "main",
                         credentialsId: "${git_credential}",
-                        url: "http://${repo_url}"
+                        url: "${repo_url}"
                 }
             }
         }
@@ -47,17 +47,6 @@ pipeline {
             steps {
                 withAWS(region: "${region}", credentials: "${aws_credential}") {
                     s3Upload(file: "${TAG_NAME}", bucket: "${bucket}", path: "${TAG_NAME}/")
-                }
-            }
-        }
-        stage('Git Tag and Push') {
-            steps {
-                script {
-                    datetime = new Date().format("yyyy-MM-dd HH:mm:ss")
-                    withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: "${git_credential}", usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD']]) {
-                        sh "git tag -a ${TAG_NAME} -m '${datetime}'"
-                        sh "git push http://${env.GIT_USERNAME}:${env.GIT_PASSWORD}@${repo_url} --tags"
-                    }
                 }
             }
         }
