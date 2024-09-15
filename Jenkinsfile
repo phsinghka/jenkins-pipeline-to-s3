@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        git_credential = "github_access"
+        git_credential = "github-access"
         aws_credential = "AWS_CREDENTIALS"
         repo_url = "https://github.com/phsinghka/jenkins-pipeline-to-s3.git"
         bucket = "jenkins-s3-upload"
